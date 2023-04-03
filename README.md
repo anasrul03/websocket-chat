@@ -61,3 +61,4 @@ When a client disconnects from the server, the server logs a message to the cons
 
 License
 This code is released under the MIT License. See LICENSE for more information.
+# websocket-chat
