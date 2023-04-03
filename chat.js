@@ -1,22 +1,33 @@
-const socket = new WebSocket('ws://localhost:8080');
+const ws = new WebSocket("ws://localhost:8080");
 
-socket.addEventListener('open', () => {
-  socket.send('New user joined the chat');
+// const printMsg = () =
+
+ws.addEventListener("open", () => {
+  ws.send("New user joined the chat");
 });
 
-socket.addEventListener('message', (event) => {
+ws.addEventListener("message", (event) => {
   const message = event.data;
+  // const divElement = document.createElement("<li>");
+  // const getSpace = document.getElementById("chat-window");
+  // document.getElementById("chat-window").innerHTML = divElement;
+  // divElement.innerText = message;
+  // console.log(message);
 });
 
-socket.addEventListener('close', () => {
+ws.addEventListener("close", () => {
   // update UI to indicate user has left the chat
 });
 
-const messageForm = document.getElementById('message-form');
-const messageInput = document.getElementById('message-input');
+const messageForm = document.getElementById("message-form");
+const messageInput = document.getElementById("message-input");
 
-messageForm.addEventListener('submit', (event) => {
+messageForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const chatWindow = document.getElementById("chat-window");
   const message = messageInput.value;
-  socket.send(message);
-  messageInput.value = '';
+  ws.send(message);
+  messageInput.value = "";
+  console.log(message);
+  chatWindow.innerHTML = `<p>${message}</p>`;
 });
